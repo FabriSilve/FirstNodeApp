@@ -20,6 +20,10 @@ const server = http.createServer((req, res) => {
     if(err) throw err;
     console.log('Saved!');
   });
+  fs.writeFile('lastAccess.log', date.myDateTime(), (err) => {
+    if(err) throw err;
+    console.log('Saved!');
+  });
   fs.readFile('html/index.html', (err, data) => {
     res.setHeader('Content-Type', 'text/html');
     res.end(data);
