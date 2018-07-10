@@ -35,13 +35,24 @@ const server = http.createServer((req, res) => {
     res.end(data);
   })
   */
-  const q = url.parse(req.url, true);
+  /*const q = url.parse(req.url, true);
   //console.log(q.host);
   console.log(q.pathname);
   console.log(q.search);
   const data = q.query;
   console.log(data.var);
-  res.end();
+  res.end();*/
+
+  const q = url.parse(req.url, true);
+  const filename = './html' + q.pathname;
+  fs.readFile(filename, (err, data) => {
+    if(err) {
+      res.writeHead(404, {'Content-Type': 'text/html'});
+      return res.end("404 Not Found");
+    }
+    res.writeHead(200, {'Content-Type':'text/html'});
+    res.end(data);
+  });
 
 });
 
