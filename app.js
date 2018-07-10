@@ -15,7 +15,8 @@ const server = http.createServer((req, res) => {
   const q = url.parse(req.url, true).query;
   const txt = q.year + ' ' + q.month;
   res.write(txt+'\n');
-  console.log(txt);*/
+  console.log(txt);
+
   fs.appendFile('data.log', 'new visit\n', (err) => {
     if(err) throw err;
     console.log('Saved!');
@@ -33,6 +34,15 @@ const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'text/html');
     res.end(data);
   })
+  */
+  const q = url.parse(req.url, true);
+  //console.log(q.host);
+  console.log(q.pathname);
+  console.log(q.search);
+  const data = q.query;
+  console.log(data.var);
+  res.end();
+
 });
 
 server.listen(port, hostname, () => {
