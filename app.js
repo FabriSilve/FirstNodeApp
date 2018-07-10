@@ -24,6 +24,11 @@ const server = http.createServer((req, res) => {
     if(err) throw err;
     console.log('Saved!');
   });
+  fs.unlink('data.log', (err) => {
+    if(err) throw err;
+    console.log('file deleted');
+  });
+
   fs.readFile('html/index.html', (err, data) => {
     res.setHeader('Content-Type', 'text/html');
     res.end(data);
