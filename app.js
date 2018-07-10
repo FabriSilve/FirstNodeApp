@@ -16,6 +16,10 @@ const server = http.createServer((req, res) => {
   const txt = q.year + ' ' + q.month;
   res.write(txt+'\n');
   console.log(txt);*/
+  fs.appendFile('data.log', 'new visit\n', (err) => {
+    if(err) throw err;
+    console.log('Saved!');
+  });
   fs.readFile('html/index.html', (err, data) => {
     res.setHeader('Content-Type', 'text/html');
     res.end(data);
